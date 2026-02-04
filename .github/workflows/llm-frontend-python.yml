@@ -9,7 +9,7 @@ on:
 env:
   PYTHON_VERSION: '3.10.5'
   #OLLAMA_MODEL: 'gemma2:2b'
-  DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/backend-app
+  DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/llm-frontend-python
   #OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
 
 jobs:
@@ -65,8 +65,8 @@ jobs:
           tags: |
             ${{ env.DOCKER_IMAGE }}:latest
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-          build-args: |
-            OLLAMA_API_KEY=${{ secrets.OLLAMA_API_KEY }}
+          #build-args: |
+          #  OLLAMA_API_KEY=${{ secrets.OLLAMA_API_KEY }}
           cache-from: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache
           cache-to: type=registry,ref=${{ env.DOCKER_IMAGE }}:buildcache,mode=max
 
